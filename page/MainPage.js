@@ -8,10 +8,10 @@ import LocalizedStrings from '../util/LocalizedStrings'
 import { showPrivacy } from '../util/privacy'
 const strings = new LocalizedStrings({
   zh: {
-    hello: '你好 {{projectPath}}'
+    hello: '你好 {{projectName}}'
   },
   en: {
-    hello: 'hello {{projectPath}}'
+    hello: 'hello {{projectName}}'
   }
 })
 
@@ -20,7 +20,7 @@ export default class MainPage extends Component {
     return {
       header: <View>
         <TitleBarBlack
-          title={Device.name} style={{ backgroundColor: '#fff' }}
+          title={Device.name} style={[{ backgroundColor: '#fff' }]}
           onPressLeft={() => {
             Package.exit()
           }}

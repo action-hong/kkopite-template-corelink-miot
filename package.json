@@ -1,5 +1,5 @@
 {
-        "name": "{{projectName}}",
+        "name": "{{projectHyphenName}}",
         "version": "1.0.23",
         "scripts":{
             "start":"node ../../bin/runProject.js"

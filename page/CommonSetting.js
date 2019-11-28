@@ -15,7 +15,7 @@ import i18n from '../i18n'
 export default class Setting extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
-      header: <TitleBarBlack title={strings.setting} style={{ backgroundColor: '#fff' }}
+      header: <TitleBarBlack title={strings.setting} style={[{ backgroundColor: '#fff' }]}
         onPressLeft={() => {
           navigation.goBack()
         }}/>
@@ -58,7 +58,7 @@ export default class Setting extends React.Component {
             showDot={this.state.showDot}
             extraOptions={extraOptions}
           />
-          <View style={{ height: 20 }} />
+          <View style={[{ height: 20 }]} />
         </ScrollView>
       </View>
     )
