@@ -1,1 +1,3 @@
-# my-template
+### 注意
+
++ `resources/raw 路径下的用户协议, 隐私记得更换到相应协议`
