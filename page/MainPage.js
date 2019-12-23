@@ -4,16 +4,8 @@ import { Text, View, StyleSheet, Platform, StatusBar } from 'react-native'
 import ratio from '../ratio'
 import { TitleBarBlack } from 'miot/ui'
 import { Package, Device, Service, DeviceEvent, PackageEvent } from 'miot'
-import LocalizedStrings from '../util/LocalizedStrings'
 import { showPrivacy } from '../util/privacy'
-const strings = new LocalizedStrings({
-  zh: {
-    hello: '你好 {{projectName}}'
-  },
-  en: {
-    hello: 'hello {{projectName}}'
-  }
-})
+import i18n from '../i18n'
 
 export default class MainPage extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -121,7 +113,7 @@ export default class MainPage extends Component {
     render () {
       return (
         <View style={styles.container}>
-          <Text>{strings.hello}</Text>
+          <Text>{i18.hello}</Text>
         </View>
       )
     }
