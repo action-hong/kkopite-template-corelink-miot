@@ -1,12 +1,14 @@
 import LocalizedStrings from '../util/LocalizedStrings'
+import zh from './zh'
+import en from './en'
+import ko from './ko'
+import zhTW from './zh-tw'
+import zhHK from './zh-hk'
 
 export default new LocalizedStrings({
-  en: {
-    agreement: require('../resources/raw/agreement.html'),
-    privacy: require('../resources/raw/privacy.html')
-  },
-  zh: {
-    agreement: require('../resources/raw/agreement-zh.html'),
-    privacy: require('../resources/raw/privacy-zh.html')
-  }
+  en,
+  zh,
+  ko,
+  'zh-tw': zhTW,
+  'zh-hk': zhHK
 })
