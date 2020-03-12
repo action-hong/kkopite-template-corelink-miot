@@ -1,6 +1,6 @@
 { 
         "package_path": "{{projectName}}",
-        "min_sdk_api_level":10023,
+        "min_sdk_api_level":10034,
         "developer_id": "",
         "version_code":1,
         "entrance_scene":{
