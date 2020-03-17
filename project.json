@@ -5,6 +5,6 @@
         "version_code":1,
         "entrance_scene":{
             "action_ids":[],
-            "trigger_ids":[],
+            "trigger_ids":[]
         }
     }
