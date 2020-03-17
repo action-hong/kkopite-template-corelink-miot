@@ -1,7 +1,6 @@
 ## 模板的目录结构
 
 ```
-│  custom.js(做一些自定义的操作, 当前针对android平台对所有Text添加默认字体)                 
 │  index.ios.js(ios入口)
 │  index.js(android入口)
 │  package.json
@@ -112,10 +111,10 @@ obj['prop.2.1'] = true
 ```js
 import Text from 'root/component/AppText'
 
-...
-render() {
+
+function Hello() {
   // 使用方法的React native提供的Text组件一样
-  <Text>hello world</Text>
-}
+  return (<Text>hello world</Text>)
+
 ...
 ```
