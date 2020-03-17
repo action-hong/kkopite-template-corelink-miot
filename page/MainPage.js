@@ -1,8 +1,9 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, Platform, StatusBar } from 'react-native'
+import { View, StyleSheet, Platform, StatusBar } from 'react-native'
 import ratio from '../ratio'
 import { TitleBarBlack } from 'miot/ui'
+import Text from '../component/AppText'
 import { Package, Device, Service, DeviceEvent, PackageEvent } from 'miot'
 import { showPrivacy } from '../util/privacy'
 import i18n from '../i18n'
