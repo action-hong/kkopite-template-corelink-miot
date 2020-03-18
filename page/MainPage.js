@@ -114,7 +114,7 @@ export default class MainPage extends Component {
     render () {
       return (
         <View style={styles.container}>
-          <Text>{i18.hello}</Text>
+          <Text>{i18n.hello}</Text>
         </View>
       )
     }

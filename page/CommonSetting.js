@@ -5,7 +5,7 @@ import { strings, Styles } from 'miot/resources'
 import { CommonSetting } from 'miot/ui/CommonSetting'
 import { firstAllOptions } from 'miot/ui/CommonSetting/CommonSetting'
 import Separator from 'miot/ui/Separator'
-import { TitleBarBlack } from 'miot/ui'
+import NavigationBar from 'miot/ui/NavigationBar'
 import { Device, PackageEvent, Service } from 'miot'
 import React from 'react'
 import { ScrollView, StyleSheet, View } from 'react-native'
@@ -14,13 +14,19 @@ import i18n from '../i18n'
 
 export default class Setting extends React.Component {
   static navigationOptions = ({ navigation }) => {
-    return {
-      header: <TitleBarBlack title={strings.setting} style={[{ backgroundColor: '#fff' }]}
-        onPressLeft={() => {
-          navigation.goBack()
-        }}/>
+    const titleProps = {
+      left: [
+        {
+          key: NavigationBar.ICON.BACK,
+          onPress: _ => navigation.goBack()
+        }
+      ],
+      title: strings.setting
     }
-  };
+    return {
+      header: <NavigationBar {...titleProps} />
+    }
+  }
 
   constructor (props, context) {
     super(props, context)
