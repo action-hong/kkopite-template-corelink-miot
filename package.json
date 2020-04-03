@@ -1,10 +1,10 @@
 {
-        "name": "{{projectHyphenName}}",
-        "version": "1.0.23",
-        "scripts":{
-            "start":"node ../../bin/runProject.js"
-        },
-        "dependencies":{
-            
-        }
-    }
+  "name": "project-com-corelink-template",
+  "version": "1.0.34",
+  "scripts":{
+      "start":"node ../../bin/runProject.js"
+  },
+  "dependencies":{
+      
+  }
+}
