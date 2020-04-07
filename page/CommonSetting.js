@@ -38,7 +38,8 @@ export default class Setting extends React.Component {
   render () {
     const firstOptions = [
       firstAllOptions.SHARE,
-      firstAllOptions.FIRMWARE_UPGRADE
+      firstAllOptions.FIRMWARE_UPGRADE,
+      firstAllOptions.IFTTT
     ]
 
     // 显示固件升级二级菜单
