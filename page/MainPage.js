@@ -8,7 +8,6 @@ import { Package, Device, Service, DeviceEvent, PackageEvent } from 'miot'
 import { showPrivacy } from '../util/privacy'
 import i18n from '../i18n'
 
-let isMounted = false
 export default class MainPage extends Component {
   static navigationOptions = ({ navigation }) => {
     const titleProps = {
@@ -38,7 +37,6 @@ export default class MainPage extends Component {
     }
 
     componentDidMount () {
-      isMounted = true
       // 注意如果主界面的标题栏字体背景与其他界面不同的话, 切回主界面时需要以下代码去更新StatusBar
       // if (Platform.OS === 'android') {
       //   StatusBar.setTranslucent(true)
@@ -49,16 +47,15 @@ export default class MainPage extends Component {
       // // eslint-disable-next-line react/prop-types
       this.navigatorSubscription = this.props.navigation.addListener(
         'didFocus',
-        payload => {
-          StatusBar.setBarStyle('light-content')
+        _ => {
           this.initData()
-          isMounted = true
         }
       )
-      this._blurSubscription = this.props.navigation.addListener(
-        'willBlur',
+      // 如果再didFocus再做处理, 会明显看到状态栏的变化
+      this.willFocusSubscription = this.props.navigation.addListener(
+        'willFocus',
         _ => {
-          isMounted = false
+          StatusBar.setBarStyle('light-content')
         }
       )
       // 初始化数据
@@ -67,10 +64,9 @@ export default class MainPage extends Component {
     }
 
     componentWillUnmount () {
-      isMounted = false
       this.unRegister()
       this.navigatorSubscription && this.navigatorSubscription.remove()
-      this._blurSubscription && this._blurSubscription.remove()
+      this.willFocusSubscription && this.willFocusSubscription.remove()
     }
 
     // 初始化读取一些必要属性
@@ -92,7 +88,7 @@ export default class MainPage extends Component {
       // 监听变化
       this.listener = DeviceEvent.deviceReceivedMessages.addListener(
         (device, messages) => {
-          if (isMounted) {
+          if (this.props.navigation.isFocused()) {
             console.log('Device received', messages)
           }
         })
