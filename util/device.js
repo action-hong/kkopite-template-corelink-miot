@@ -2,7 +2,7 @@ import { Service, DeviceEvent, Device } from 'miot'
 import * as mock from '../mock'
 // 提供接口
 
-const USE_MOCK = false
+const USE_MOCK = {{mock}}
 
 export const setPropertiesValue = (params) => {
   console.log('setProperties', params.map(({ prop, value }) => prop + ':' + value).join(','))
