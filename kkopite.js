@@ -6,8 +6,5 @@ module.exports = {
       message: '是否使用mock',
       default: false
     }
-  ],
-  ignore: [
-    '**/*.vue'
   ]
 }
