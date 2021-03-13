@@ -7,6 +7,7 @@ import Text from '../component/AppText'
 import { Package, Device, Service, DeviceEvent, PackageEvent } from 'miot'
 import { showPrivacy } from '../util/privacy'
 import i18n from '../i18n'
+import { getPropertiesValue, addListener, subscribeMessages, setPropertiesValue } from '../util/device'
 
 export default class MainPage extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -37,6 +38,8 @@ export default class MainPage extends Component {
     }
 
     componentDidMount () {
+      showPrivacy()
+      this.register()
       // 注意如果主界面的标题栏字体背景与其他界面不同的话, 切回主界面时需要以下代码去更新StatusBar
       // if (Platform.OS === 'android') {
       //   StatusBar.setTranslucent(true)
@@ -58,9 +61,6 @@ export default class MainPage extends Component {
           StatusBar.setBarStyle('light-content')
         }
       )
-      // 初始化数据
-      this.initData()
-      this.register()
     }
 
     componentWillUnmount () {
@@ -72,14 +72,14 @@ export default class MainPage extends Component {
     // 初始化读取一些必要属性
     initData = () => {
       showPrivacy()
-      // Service.spec.getPropertiesValue([
-      // ])
-      //   .then(res => {
-      //     this.endOperator()
-      //   }).catch(e => {
-      //     console.log(e)
-      //     this.endOperator()
-      //   })
+      getPropertiesValue([
+      ])
+        .then(res => {
+        }).catch(e => {
+          console.log(e)
+        }).finally(_ => {
+          this.endOperator()
+        })
     }
 
     // 监听一些事件
@@ -93,13 +93,15 @@ export default class MainPage extends Component {
           }
         })
 
-      Device.getDeviceWifi().subscribeMessages(
+      subscribeMessages(
+
       ).then(subcription => {
         console.log('subcription success')
         this.subcription = subcription
       }).catch(e => {
         console.log('subscription failed', e)
       })
+
       // 暂时使用轮询, android 手机无法监听
       // this.getDataId = setInterval(this.initData, 5000)
 
