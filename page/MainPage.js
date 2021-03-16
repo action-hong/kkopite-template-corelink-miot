@@ -4,10 +4,11 @@ import { View, StyleSheet, Platform, StatusBar } from 'react-native'
 import ratio from '../ratio'
 import NavigationBar from 'miot/ui/NavigationBar'
 import Text from '../component/AppText'
-import { Package, Device, Service, DeviceEvent, PackageEvent } from 'miot'
+import { Package, Device, PackageEvent } from 'miot'
 import { showPrivacy } from '../util/privacy'
 import i18n from '../i18n'
 import { getPropertiesValue, addListener, subscribeMessages, setPropertiesValue } from '../util/device'
+import commands, { miotPropArray, miotProps, propToKey } from '../constant'
 
 export default class MainPage extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -72,9 +73,14 @@ export default class MainPage extends Component {
     // 初始化读取一些必要属性
     initData = () => {
       showPrivacy()
-      getPropertiesValue([
-      ])
+      getPropertiesValue(miotProps)
         .then(res => {
+          console.log('init', res)
+          const obj = {}
+          res.forEach((item, idx) => {
+            const value = item.value
+            obj[miotProps[idx].key] = value
+          })
         }).catch(e => {
           console.log(e)
         }).finally(_ => {
@@ -86,15 +92,23 @@ export default class MainPage extends Component {
     register () {
       this.subcription = null
       // 监听变化
-      this.listener = DeviceEvent.deviceReceivedMessages.addListener(
+      this.listener = addListener(
         (device, messages) => {
           if (this.props.navigation.isFocused()) {
             console.log('Device received', messages)
+            miotProps.forEach(item => {
+              if (messages.has(item.prop)) {
+                // console.log('received', messages)
+                this.setState({
+                  [item.key]: messages.get(item.prop)[0]
+                })
+              }
+            })
           }
         })
 
       subscribeMessages(
-
+        ...miotPropArray
       ).then(subcription => {
         console.log('subcription success')
         this.subcription = subcription
@@ -130,6 +144,25 @@ export default class MainPage extends Component {
       this.setState({
         isOperating: false
       })
+    }
+
+    handlePropertyChange (params) {
+      this.startOperator()
+      if (!Array.isArray(params)) {
+        params = [params]
+      }
+      return setPropertiesValue(params)
+        .then(res => {
+          res.forEach((item, idx) => {
+            if (item.code === 0) {
+              this.setState({
+                [propToKey[params[idx].prop]]: params[idx].value
+              })
+            }
+          })
+        }).finally(_ => {
+          this.endOperator()
+        })
     }
 
     render () {
