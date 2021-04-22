@@ -48,7 +48,7 @@ export default class Setting extends React.Component {
       deleteDeviceMessage: '',
       option: {
         privacyURL: i18n.privacy,
-        agreementURL: i18n.agreement,
+        hideAgreement: true,
         experiencePlanURL: '',
         hideUserExperiencePlan: true
       }
