@@ -2,9 +2,8 @@ import { Service, Device, Host, Package } from 'miot'
 import i18n from '../i18n'
 export const showPrivacy = () => {
   if (!Device.isOwner) return
-  const agreementURL = i18n.agreement
   const privacyURL = i18n.privacy
-  var options = { privacyURL, agreementURL, hideUserExperiencePlan: true }
+  var options = { privacyURL, hideAgreement: true, hideUserExperiencePlan: true }
   // options.hideAgreement = this.state.hideAgreement;
   Service.smarthome.batchGetDeviceDatas([{ did: Device.deviceID, props: ['prop.s_auth_config'] }]).then(res => {
     console.log('batchGetDeviceDatas ', res)
