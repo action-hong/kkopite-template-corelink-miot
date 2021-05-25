@@ -1,6 +1,6 @@
-import { Platform, StatusBar } from 'react-native'
-import ratio from './ratio'
-import { Styles } from 'miot/resources'
+import { Platform, StatusBar } from 'react-native';
+import ratio from './ratio';
+import { Styles } from 'miot/resources';
 // StatusBar.setBackgroundColor('#F29517')
 
 const styles = {
@@ -14,13 +14,13 @@ const styles = {
     borderBottomColor: Styles.common.hairlineColor,
     borderBottomWidth: StyleSheet.hairlineWidth
   }
-}
+};
 
 if (Platform.OS === 'ios') {
   styles.headerStyle = {
     borderBottomWidth: 0, // 修改的地方
     borderBottomColor: '#A7A7AA'
-  }
+  };
 } else {
   styles.headerStyle = {
     shadowColor: 'black',
@@ -37,13 +37,13 @@ if (Platform.OS === 'ios') {
     height: 44 * ratio + StatusBar.currentHeight,
     paddingTop: StatusBar.currentHeight
 
-  }
+  };
 }
 
 styles.headerStyle = {
   ...styles.headerStyle,
   // height: 44 * ratio,
   backgroundColor: '#F29517'
-}
+};
 
-export default styles
+export default styles;

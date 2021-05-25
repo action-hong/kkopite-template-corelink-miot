@@ -1,16 +1,16 @@
 /* eslint-disable react/prop-types */
-'use strict'
+'use strict';
 
-import { strings, Styles } from 'miot/resources'
-import { CommonSetting } from 'miot/ui/CommonSetting'
-import { firstAllOptions } from 'miot/ui/CommonSetting/CommonSetting'
-import Separator from 'miot/ui/Separator'
-import NavigationBar from 'miot/ui/NavigationBar'
-import { Device, PackageEvent, Service } from 'miot'
-import React from 'react'
-import { ScrollView, StyleSheet, View } from 'react-native'
+import { strings, Styles } from 'miot/resources';
+import { CommonSetting } from 'miot/ui/CommonSetting';
+import { firstAllOptions } from 'miot/ui/CommonSetting/CommonSetting';
+import Separator from 'miot/ui/Separator';
+import NavigationBar from 'miot/ui/NavigationBar';
+import { Device, PackageEvent, Service } from 'miot';
+import React from 'react';
+import { ScrollView, StyleSheet, View } from 'react-native';
 
-import i18n from '../i18n'
+import i18n from '../i18n';
 
 export default class Setting extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -18,29 +18,29 @@ export default class Setting extends React.Component {
       left: [
         {
           key: NavigationBar.ICON.BACK,
-          onPress: _ => navigation.goBack()
+          onPress: () => navigation.goBack()
         }
       ],
       title: strings.setting
-    }
+    };
     return {
       header: <NavigationBar {...titleProps} />
-    }
+    };
   }
 
-  constructor (props, context) {
-    super(props, context)
+  constructor(props, context) {
+    super(props, context);
     this.state = {
       showDot: []
-    }
+    };
   }
 
-  render () {
+  render() {
     const firstOptions = [
       firstAllOptions.SHARE,
       firstAllOptions.FIRMWARE_UPGRADE,
       firstAllOptions.IFTTT
-    ]
+    ];
 
     // 显示固件升级二级菜单
     const extraOptions = {
@@ -52,7 +52,7 @@ export default class Setting extends React.Component {
         experiencePlanURL: '',
         hideUserExperiencePlan: true
       }
-    }
+    };
     return (
       <View style={styles.container}>
         <Separator />
@@ -68,35 +68,35 @@ export default class Setting extends React.Component {
           <View style={[{ height: 20 }]} />
         </ScrollView>
       </View>
-    )
+    );
   }
 
-  componentDidMount () {
-    this.checkDeviceVersion()
+  componentDidMount() {
+    this.checkDeviceVersion();
     // 升级界面返回来, 再去检查下固件升级 来去掉小红点
     this.nativeBack = PackageEvent.packageViewWillAppear.addListener(() => {
-      this.checkDeviceVersion()
-    })
+      this.checkDeviceVersion();
+    });
   }
 
-  componentWillUnmount () {
-    this.nativeBack && this.nativeBack.remove()
+  componentWillUnmount() {
+    this.nativeBack && this.nativeBack.remove();
   }
 
-  checkDeviceVersion () {
+  checkDeviceVersion() {
     Service.smarthome.checkDeviceVersion(Device.deviceID, Device.type)
-      .then(res => {
-        const showDot = res.hasNewFirmware ? [firstAllOptions.FIRMWARE_UPGRADE] : []
+      .then((res) => {
+        const showDot = res.hasNewFirmware ? [firstAllOptions.FIRMWARE_UPGRADE] : [];
         this.setState({
           showDot
-        })
-      }).catch(e => {
-        console.log(e)
-      })
+        });
+      }).catch((e) => {
+        console.log(e);
+      });
   }
 }
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     backgroundColor: Styles.common.backgroundColor,
     flex: 1
@@ -109,4 +109,4 @@ var styles = StyleSheet.create({
     borderBottomColor: Styles.common.hairlineColor,
     borderBottomWidth: StyleSheet.hairlineWidth
   }
-})
+});
