@@ -81,6 +81,7 @@ export default class MainPage extends Component {
             const value = item.value;
             obj[miotProps[idx].key] = value;
           });
+          this.setState(obj);
         }).catch((e) => {
           console.log(e);
         }).finally(() => {
