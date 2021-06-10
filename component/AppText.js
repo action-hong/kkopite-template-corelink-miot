@@ -21,7 +21,7 @@ export default class AppText extends Component {
       }
     }
     return (
-      <Text {...this.props} style={style}>
+      <Text {...this.props} style={style} allowFontScaling={false}>
         {this.props.children}
       </Text>
     );
