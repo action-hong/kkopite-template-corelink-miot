@@ -10,7 +10,7 @@ import { Device, PackageEvent, Service } from 'miot';
 import React from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 
-import i18n from '../i18n';
+import resources from '../i18n/resources';
 
 export default class Setting extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -47,7 +47,7 @@ export default class Setting extends React.Component {
       showUpgrade: true,
       deleteDeviceMessage: '',
       option: {
-        privacyURL: i18n.privacy,
+        privacyURL: resources.privacy,
         hideAgreement: true,
         experiencePlanURL: '',
         hideUserExperiencePlan: true
