@@ -31,3 +31,10 @@ export const miotProps = Object.keys(commands).map((key) => ({
 }));
 
 export const miotPropArray = miotProps.map((item) => item.prop);
+
+// 马上更新UI，然后下发指令
+export const TYPE_SET_PROPS_UPDATE_BEFORE = 0;
+// 先发下指令，回调后再更新UI
+export const TYPE_SET_PROPS_UPDATE_AFTER = 1;
+// 只下发指令，不更新UI
+export const TYPE_SET_PROPS_NO_UPDATE = 2;

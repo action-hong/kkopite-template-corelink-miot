@@ -1,6 +1,4 @@
 export default {
-  agreement: require('../resources/raw/agreement-zh.html'),
-  privacy: require('../resources/raw/privacy-zh.html'),
   hello: '你好',
   error_network: '网络错误',
   code_error: '设备操作失败',
