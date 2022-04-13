@@ -9,9 +9,6 @@ import NavigationBar from 'miot/ui/NavigationBar';
 import { Device, PackageEvent, Service } from 'miot';
 import React from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
-
-import resources from '../i18n/resources';
-
 export default class Setting extends React.Component {
   static navigationOptions = ({ navigation }) => {
     const titleProps = {
@@ -47,10 +44,6 @@ export default class Setting extends React.Component {
       showUpgrade: true,
       deleteDeviceMessage: '',
       option: {
-        privacyURL: resources.privacy,
-        hideAgreement: true,
-        experiencePlanURL: '',
-        hideUserExperiencePlan: true
       }
     };
     return (

@@ -59,7 +59,8 @@ export const doAction = () => {
 export const getPropertiesValue = async(items) => {
   return items.map(({ prop }) => {
     return {
-      value: obj[prop]
+      value: obj[prop],
+      code: 0
     };
   });
 };
@@ -71,6 +72,10 @@ export const setPropertiesValue = async(items) => {
   items.forEach((item) => {
     obj[item.prop] = item.value;
   });
+  return items.map((item) => ({
+    ...item,
+    code: 0
+  }));
 };
 
 export const addListener = (func) => {
