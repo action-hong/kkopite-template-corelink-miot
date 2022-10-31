@@ -1,6 +1,6 @@
 { 
   "package_path": "com.corelink.template",
-  "min_sdk_api_level":10034,
+  "min_sdk_api_level":10074,
   "developer_id": "",
   "version_code":1,
   "entrance_scene":{

@@ -1,7 +1,6 @@
 import { Platform, StatusBar } from 'react-native';
 import ratio from './ratio';
 import { Styles } from 'miot/resources';
-// StatusBar.setBackgroundColor('#F29517')
 
 const styles = {
   headerStyle: {

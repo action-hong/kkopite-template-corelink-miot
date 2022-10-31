@@ -1,6 +1,6 @@
 {
   "name": "project-com-corelink-template",
-  "version": "1.0.34",
+  "version": "1.0.74",
   "scripts":{
       "start":"node ../../bin/runProject.js"
   },

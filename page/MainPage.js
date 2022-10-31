@@ -5,7 +5,7 @@ import ratio from '../ratio';
 import NavigationBar from 'miot/ui/NavigationBar';
 import Text from '../component/AppText';
 import { Package, Device, PackageEvent } from 'miot';
-import i18n from '../i18n';
+import { t } from '../i18n';
 import { getPropertiesValue, addListener, subscribeMessages, setPropertiesValue } from '../util/device';
 import commands, { miotPropArray, miotProps, propToKey, TYPE_SET_PROPS_NO_UPDATE, TYPE_SET_PROPS_UPDATE_AFTER, TYPE_SET_PROPS_UPDATE_BEFORE } from '../constant';
 import { IntervalTask, Task } from '../util/task';
@@ -32,8 +32,8 @@ export default class MainPage extends Component {
           onPress: () => navigation.navigate('CommonSetting')
         }
       ],
-      title: Device.name,
-      type: NavigationBar.TYPE.DARK
+      title: Device.name
+      // type: NavigationBar.TYPE.DARK
     };
     return {
       header: <NavigationBar {...titleProps} />
@@ -73,7 +73,7 @@ export default class MainPage extends Component {
       this.willFocusSubscription = this.props.navigation.addListener(
         'willFocus',
         () => {
-          StatusBar.setBarStyle('light-content');
+          // StatusBar.setBarStyle('light-content');
         }
       );
     }
@@ -269,7 +269,7 @@ export default class MainPage extends Component {
     render() {
       return (
         <View style={styles.container}>
-          <Text>{i18n.hello}</Text>
+          <Text>{ t('hello') }</Text>
         </View>
       );
     }

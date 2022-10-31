@@ -4,7 +4,7 @@ import Toast from 'react-native-root-toast';
 import i18n from '../i18n';
 // 提供接口
 
-const USE_MOCK = false;
+const USE_MOCK = true;
 
 export const setPropertiesValue = (params) => {
   console.log('setProperties', params.map(({ prop, value }) => `${ prop }:${ value }`).join(','));
