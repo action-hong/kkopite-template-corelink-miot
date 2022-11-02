@@ -6,9 +6,9 @@ import NavigationBar from 'miot/ui/NavigationBar';
 import Text from '../component/AppText';
 import { Package, Device, PackageEvent } from 'miot';
 import { t } from '../i18n';
-import { getPropertiesValue, addListener, subscribeMessages, setPropertiesValue } from '../util/device';
+import { getPropertiesValue, addListener, subscribeMessages, setPropertiesValue } from '../api';
 import commands, { miotPropArray, miotProps, propToKey, TYPE_SET_PROPS_NO_UPDATE, TYPE_SET_PROPS_UPDATE_AFTER, TYPE_SET_PROPS_UPDATE_BEFORE } from '../constant';
-import { IntervalTask, Task } from '../util/task';
+import { IntervalTask, Task } from '../util';
 
 const sendTasks = {};
 
