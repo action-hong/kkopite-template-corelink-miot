@@ -2,7 +2,7 @@ import { Device } from 'miot';
 
 const did = Device.deviceID;
 
-const commands = {
+export const commands = {
   on: {
     did,
     prop: 'prop.2.1',
@@ -11,16 +11,12 @@ const commands = {
   }
 };
 
-export default commands;
-
-// prop => key
-const propToKey = {};
-
-Object.keys(commands).forEach((key) => {
-  propToKey[commands[key].prop] = key;
-});
-
-export { propToKey };
+export const propToKey = Object.entries(commands)
+  .map(([key, obj]) => ({ [obj.prop]: key }))
+  .reduce((prev, cur) => ({
+    ...prev,
+    ...cur
+  }), {});
 
 /**
  * @type { Array<{key: string, piid: number, siid: number, prop: string, did: string}> }
