@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 import { View, StyleSheet, Platform, StatusBar } from 'react-native';
-import ratio from '../ratio';
+import { vw } from '../ratio';
 import NavigationBar from 'miot/ui/NavigationBar';
 import Text from '../component/AppText';
 import { Package, Device, PackageEvent } from 'miot';
@@ -285,7 +285,7 @@ const styles = StyleSheet.create({
     // backgroundColor: '#F29517'
   },
   hello: {
-    width: 100 * ratio,
+    width: vw(100),
     textAlign: 'center'
   }
 });

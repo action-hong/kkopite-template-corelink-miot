@@ -6,3 +6,7 @@ let ratio = (window.width / 375) > 1.5 ? 1.5 : (window.width / 375);
 export const height = window.height;
 export const width = window.width;
 export default ratio;
+
+export function vw(num) {
+  return num * ratio;
+}
