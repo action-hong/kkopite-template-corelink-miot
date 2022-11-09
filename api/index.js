@@ -1,6 +1,6 @@
 import { Service, DeviceEvent, Device } from 'miot';
 import * as mock from '../mock';
-import Toast from 'react-native-root-toast';
+// import Toast from 'react-native-root-toast';
 import i18n from '../i18n';
 // 提供接口
 
@@ -12,21 +12,21 @@ export const setPropertiesValue = (params) => {
   return Service.spec.setPropertiesValue(params)
     .then((res) => {
       console.log('set properties success', res);
-      const message = res.filter((item) => item.code !== 0)
-        .map((item) => generateMessage(item.code))
-        .join(',');
+      // const message = res.filter((item) => item.code !== 0)
+      //   .map((item) => generateMessage(item.code))
+      //   .join(',');
 
-      if (message) {
-        Toast.show(message, {
-          position: Toast.positions.CENTER
-        });
-      }
+      // if (message) {
+      //   Toast.show(message, {
+      //     position: Toast.positions.CENTER
+      //   });
+      // }
       return res;
     }).catch((e) => {
       console.log('set properties failed', e);
-      Toast.show(i18n.error_network, {
-        position: Toast.positions.CENTER
-      });
+      // Toast.show(i18n.error_network, {
+      //   position: Toast.positions.CENTER
+      // });
       return Promise.reject(e);
     });
 };
@@ -35,9 +35,9 @@ export const getPropertiesValue = (params) => {
   return Service.spec.getPropertiesValue(params)
     .catch((e) => {
       console.log('get properties failed', e);
-      Toast.show(i18n.error_network, {
-        position: Toast.positions.CENTER
-      });
+      // Toast.show(i18n.error_network, {
+      //   position: Toast.positions.CENTER
+      // });
       return Promise.reject(e);
     });
 };
@@ -58,18 +58,18 @@ export const doAction = (params) => {
   return Service.spec.doAction(params).then((res) => {
     console.log('action success', res);
 
-    if (res.code !== 0) {
-      Toast.show(generateMessage(res.code), {
-        position: Toast.positions.CENTER
-      });
-    }
+    // if (res.code !== 0) {
+    //   Toast.show(generateMessage(res.code), {
+    //     position: Toast.positions.CENTER
+    //   });
+    // }
 
     return res;
   }).catch((e) => {
     console.log('action failed', e);
-    Toast.show(i18n.error_network, {
-      position: Toast.positions.CENTER
-    });
+    // Toast.show(i18n.error_network, {
+    //   position: Toast.positions.CENTER
+    // });
     return Promise.reject(e);
   });
 };
