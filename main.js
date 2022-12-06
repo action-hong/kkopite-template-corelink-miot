@@ -1,5 +1,6 @@
 import MainPage from './page/MainPage';
 import CommonSetting from './page/CommonSetting';
+import ErrorPage from './page/ErrorPage';
 import { FirmwareUpgrade, MoreSetting } from 'miot/ui/CommonSetting';
 import { createStackNavigator } from 'react-navigation';
 import React from 'react';
@@ -77,6 +78,7 @@ function createRootStack(initPage) {
       MainPage,
       MoreSetting,
       FirmwareUpgrade,
+      ErrorPage,
       CommonSetting
     },
     {

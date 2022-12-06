@@ -8,6 +8,12 @@ export const commands = {
     prop: 'prop.2.1',
     siid: 2,
     piid: 1
+  },
+  fault: {
+    did,
+    prop: 'prop.2.2',
+    siid: 2,
+    piid: 2
   }
 };
 
