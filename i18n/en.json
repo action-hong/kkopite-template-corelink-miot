@@ -1,9 +1,10 @@
 {
+  "100": "The device cannot perform this operation in its current state",
   "hello": "hello",
-  "error_network": "网络错误",
-  "code_error": "设备操作失败",
-  "011": "设备离线",
-  "036": "设备操作超时",
-  "100": "设备在当前状态下无法执行此操作",
+  "error_network": "Network Error",
+  "code_error": "Device operation failed",
+  "011": "device offline",
+  "036": "Device operation timed out",
   "exceptionInformation": "Exception status information"
 }
+
