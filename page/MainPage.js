@@ -76,6 +76,7 @@ export default class MainPage extends Component {
           // StatusBar.setBarStyle('light-content');
         }
       );
+      this.loadProps();
     }
 
     componentWillUnmount() {
