@@ -10,80 +10,89 @@
 │  package.json
 │  project.json
 │  ratio.js(尺寸适配相关)
-│  README.md
-│  router.js(路由声明)
+│  README.md (说明文档)
 │  style.js(通用样式文件)
+|  main.js(主函数，声明主组件以及各个页面)
+|
+├─api
+|      index.js(封装miot提供的属性读写、action执行的函数)
+|
+├─assets(存放资源文件)
+|      images(图片资源)
 │  
 ├─component(通用组件文件夹)
 |      AppText.js(自带传入默认的字体样式的Text组件)
 │ 
-├─constant(常量文件夹)
-|      index.js(设备的相关属性, action等相关信息)
+├─constant(常量文件夹，统一通过index导出)
+|      index.js
+|      miot.js(对应产品的一些prop、action定义以及一些通用定义)
+|
+├─hook(顾名思义，存放一些hook函数的文件，统一通过index.js导出)
+|      index.js
+|      miot.js
 |
 ├─i18n(语言适配, 如果要加其他语言, 自行添加并在index.js引入)
-│      en.js
-│      index.js(导出所有语言)
-│      ko.js
-│      zh-hk.js
-│      zh-tw.js
-│      zh.js
+│      en.json
+│      index.js(导出函数`t`，使用它实现国际化)
+│      ko.json
+│      zh-hk.json
+│      zh-tw.json
+│      zh.json
+|      localized.js(语言国际化实现逻辑)
 │   
 ├─mock(mock属性读写, 订阅等)
 |   
 ├─page(页面文件夹, 需要的可自行再添加)
 │      CommonSetting.js(通用设置页面, 已处理好米家规范内所需添加的内容, 以及固件升级的提示等)
+|      ErrorPage.js(简易的显示多条错误提示的页面，可以不用)
 │      MainPage.js(首页)
-│      
-├─resources(资源目录, 存放图片等)
-│  └─raw(存放一些中英文的用户协议, 隐私协议, 新建项目后, 需要替换好这些内容)
-│          agreement-zh.html
-│          agreement.html
-│          privacy-zh.html
-│          privacy.html
+|
+├─theme(插件主题色、基础尺寸的一些配置)
+|      index.js
 │          
-└─util
-        LocalizedStrings.js(语言适配功能模块, 直接从米家demo项目中抽出来的, 无需修改)
-        privacy.js(处理隐私等相关内容首次进入弹窗的模块)
-        device.js(封装对硬件的操作:属性读写, 订阅等, 便于在真实以及模拟调用的切换)
+└─util(一些工具类集合)
+        index.js(统一导出所有工具类)
+        task.js(封装一些计时执行工具)
 ```
 
 ## 注意
 
 ### 关于隐私协议相关的
 
-- 模板项目中, 默认引入了中英文的隐私, 用户协议, 可见`i18/zh.js`, `i18n/en.js`, 新项目只需替换好`resource/raw`下的相关文件, 如若需要其他语言的隐私协议, 可按照`zh.js`的写法引入相应文件
-- 已经处理好撤销授权后, 自动退出插件
-- 已经处理好首次进入插件弹出授权提示及通用界面内引入隐私政策(参加`i18/zh.js`, `i18n/en.js`的内容)
-```js
-// zh.js
-export default {
-  agreement: require('../resources/raw/agreement-zh.html'), // 用户协议
-  privacy: require('../resources/raw/privacy-zh.html'), // 隐私政策
-  hello: '你好'
-}
-```
+目前隐私、用户协议均直接在后台配置即可，不需要插件内置了
 
-这里要注意的是, 项目组引用隐私的地方都是按`agreement`, `privacy` 这两个key来引用的, 所有不要去删除或修改
-
-### 关于语言适配
+### 关于语言国际化
 
 ```jsx
 // 引入
-import i18n from 'xxx/xx/i18n'
+import { t } from 'path/to/i18n'
 
 // 使用
 function Hello() {
-  return (<Text>{i18n.hello}</Text>)
+  return (<Text>{t('hello')}</Text>)
 }
 ```
 
-[更多的语言模板用法点击查看](https://github.com/stefalda/ReactNativeLocalization)
+假设当前的语言是中文(`zh`)，且对应的`path/to/i18n/zh.json`内容如下：
+
+```json
+{
+  "hello": "你好"
+}
+```
+
+则`t('hello')`会返回`你好`
+
+- 默认语言为en，如果找不到对应语言、对应字条时，则显示英文
+- [更多的语言模板用法点击查看](https://github.com/stefalda/ReactNativeLocalization)
 ### 关于设置中固件升级
 
 - 已处理好设置界面中固件升级的**小红点显示/隐藏**, 具体代码见`./page/CommonSetting.js`
 
 
-### 关于mock
+### 关于mock(Deprecated)
+
+**由于现在米家后台提供了虚拟设备，可以模拟调试、查看设备的各个属性变化，因此该模块没有什么必要了**
 
 与做普通的前端项目时后端接口尚未实现, 插件开发会碰到硬件尚未完成亦或是设备刚好被借走, 这时候就可以通过mock对设备属性的读写, 订阅等功能, 来快速验证前端的业务逻辑. **默认是不开启的**
 
@@ -127,7 +136,7 @@ import Text from 'root/component/AppText'
 function Hello() {
   // 使用方法的React native提供的Text组件一样
   return (<Text>hello world</Text>)
-
+}
 ...
 ```
 
@@ -136,3 +145,19 @@ function Hello() {
 首页的状态栏是白字的, 进入设置界面或其他界面, 状态栏是黑字的, **此时首页收到订阅通知, 没做变化直接更新**, 引起render后, 会重新渲染出白字的状态栏, 导致再当前界面状态栏出现错乱, 之前的很多bug都是这个引起的
 
 同时, 没法返回首页后, 需要重新设置下状态栏的颜色, 字体(如果首页和其他页面的状态栏字体是一样的, 就不用)
+
+## 关于宽度自适应
+
+`ratio.js`提供了`vw`方法，提供你根据视图大小调整宽度的功能，例如手机设备实际视图有`100px`，则：
+
+- `vw(375)`结果为`100`
+- `vw(1)`结果为`1/375*100`
+
+```js
+import { vw } from 'path/to/ratio.js'
+
+console.log(vw(100))
+```
+
+所以使用时，你只需要将设计稿的宽度设为375，这样看到的尺寸的多大，传入给`vw`方法的参数就多大。
+
