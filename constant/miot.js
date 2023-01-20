@@ -1,8 +1,14 @@
 import { Device } from 'miot';
+import { p2k, mp } from '../util';
 
+/**
+ * @type {string}
+ */
 const did = Device.deviceID;
 
-export const commands = {
+// 使用jsdoc的方法实现typescript的as const
+// https://github.com/Microsoft/TypeScript/issues/30445#issuecomment-1030284467
+export const commands = /** @type {const} */ ({
   on: {
     did,
     prop: 'prop.2.1',
@@ -15,22 +21,11 @@ export const commands = {
     siid: 2,
     piid: 2
   }
-};
+});
 
-export const propToKey = Object.entries(commands)
-  .map(([key, obj]) => ({ [obj.prop]: key }))
-  .reduce((prev, cur) => ({
-    ...prev,
-    ...cur
-  }), {});
+export const propToKey = p2k(commands);
 
-/**
- * @type { Array<{key: string, piid: number, siid: number, prop: string, did: string}> }
- */
-export const miotProps = Object.keys(commands).map((key) => ({
-  ...commands[key],
-  key
-}));
+export const miotProps = mp(commands);
 
 export const miotPropArray = miotProps.map((item) => item.prop);
 
