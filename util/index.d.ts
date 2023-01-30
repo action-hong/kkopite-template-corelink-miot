@@ -5,6 +5,12 @@ interface P {
   piid: number
 }
 
+// 多加一层 extends infer 推断出传入的类型, 否则悬浮的提示不会显示出最终的结果
+// 可以自行尝试 type MergeIntersection<T> = { [K in keyof T]: T[K] } 
+type MergeIntersection<A> = A extends infer T ? {
+  [K in keyof T]: T[K]
+} : never
+
 // union to tuple 
 // https://stackoverflow.com/questions/55127004/how-to-transform-union-type-to-tuple-type
 // 其实也没啥必要推断出 mp这个方法的返回值的结构
@@ -26,5 +32,5 @@ export declare function p2k<K extends string, const T extends Record<K, P>>(obj:
 } 
 
 export declare function mp<K extends string, const T extends Record<K, P>>(obj: T): TuplifyUnion<{
-  [K in keyof T]: { key: K } & T[K]
+  [K in keyof T]: MergeIntersection<{ key: K } & T[K]>
 }[keyof T]>
