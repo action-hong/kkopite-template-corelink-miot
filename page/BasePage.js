@@ -84,10 +84,10 @@ export default class BasePage extends Component {
           const obj = {};
           res.forEach((item, idx) => {
             const value = item.value;
-            const key = params[idx].key;
+            const key = propToKey[params[idx].prop];
             const task = this.sendTasks[key];
             if (task.sending || map[key] !== task.identify) {
-              console.log('==> 该属性刚设置过，暂不更新', key, value, task, map);
+              // console.log('==> 该属性刚设置过，暂不更新', key, value, task, map);
             } else if (item.code === 0) {
               obj[key] = value;
             }
@@ -110,13 +110,13 @@ export default class BasePage extends Component {
       this.listener = addListener(
         (device, messages) => {
           if (this.props.navigation.isFocused()) {
-            console.log('Device received', messages);
+            // console.log('Device received', messages);
             miotProps.forEach((item) => {
               if (messages.has(item.prop)) {
                 const key = item.key;
                 const value = messages.get(item.prop)[0];
                 if (this.sendTasks[key].sending) {
-                  console.log('==> 该属性刚设置过，暂不更新', key, value);
+                  // console.log('==> 该属性刚设置过，暂不更新', key, value);
                 } else {
                   // console.log('received', messages)
                   this.setState({
@@ -196,7 +196,7 @@ export default class BasePage extends Component {
         // 前面已经移除了重复的，所以没发送的直接添加进去
         this.sendQueue.push(...params);
 
-        console.log('==> 正在操作中, 不更新', readyToUpdate);
+        // console.log('==> 正在操作中, 不更新', readyToUpdate);
         return;
       }
 
