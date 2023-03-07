@@ -16,7 +16,10 @@ o = new LocalizedStrings({
   'zh-hk': zhHK
 });
 
-export function t(key) {
+export function t(key, ...args) {
+  if (args.length > 0) {
+    return o.formatString(o[key], ...args);
+  }
   return o[key];
 }
 
