@@ -2,6 +2,10 @@ import { dynamicColor } from 'miot/ui/Style/DynamicColor';
 import { vw } from '../ratio';
 import { dynamicStyleSheet } from 'miot/ui/Style/DynamicStyleSheet';
 
+import { DarkMode } from 'miot';
+
+export const isDark = DarkMode.getColorScheme() === 'dark';
+
 export const primaryColor = 'xm#00D0FD';
 
 export const COLOR = {
