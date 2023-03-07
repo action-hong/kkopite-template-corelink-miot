@@ -4,7 +4,7 @@ import * as mock from '../mock';
 import i18n from '../i18n';
 // 提供接口
 
-const USE_MOCK = true;
+const USE_MOCK = false;
 
 export const setPropertiesValue = (params) => {
   console.log('setProperties', params.map(({ prop, value }) => `${ prop }:${ value }`).join(','));
