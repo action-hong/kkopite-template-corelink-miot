@@ -1,5 +1,5 @@
 {
-  "name": "project-com-corelink-template",
+  "name": "{{ packageName }}",
   "version": "1.0.74",
   "scripts":{
       "start":"node ../../bin/runProject.js"
