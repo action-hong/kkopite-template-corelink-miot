@@ -66,7 +66,7 @@ export default class BasePage extends Component {
 
     loadProps = () => {
       this.readTask.start(() => {
-        // this.initData();
+        this.initData();
       });
     }
 
