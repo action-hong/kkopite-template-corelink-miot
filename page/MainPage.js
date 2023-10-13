@@ -33,7 +33,7 @@ export default class MainPage extends BasePage {
 
     state = {
       // 标志位表示当前正在执行某个操作, 确保回调结束后, 再执行下一个操作
-      isOperating: true
+      isOperating: false,
     }
 
     // 监听一些事件
